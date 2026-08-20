@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="description" content="PaperSudoku — offline sudoku with unlimited unique puzzles, built for Kindle e-ink.">
+    <title>PaperSudoku</title>
+    <link rel="stylesheet" href="css/papersudoku.css?v=10">
+</head>
+<body>
+
+    <!-- ============ START SCREEN ============ -->
+    <div id="screen-start" class="screen">
+
+        <div class="masthead">
+            <div class="logo">PAPER<em>SUDOKU</em></div>
+            <div class="tag">OFFLINE SUDOKU FOR E-READERS</div>
+            <div class="deco" id="deco-row">
+                <span><table class="mini-grid" cellpadding="0" cellspacing="0"><tr><td>5</td><td>3</td><td>&nbsp;</td></tr><tr><td>6</td><td>&nbsp;</td><td>8</td></tr><tr><td>&nbsp;</td><td>9</td><td>2</td></tr></table></span>
+                <span><table class="mini-grid" cellpadding="0" cellspacing="0"><tr><td>7</td><td>&nbsp;</td><td>1</td></tr><tr><td>4</td><td>2</td><td>&nbsp;</td></tr><tr><td>&nbsp;</td><td>5</td><td>3</td></tr></table></span>
+                <span><table class="mini-grid" cellpadding="0" cellspacing="0"><tr><td>&nbsp;</td><td>1</td><td>4</td></tr><tr><td>9</td><td>7</td><td>&nbsp;</td></tr><tr><td>8</td><td>&nbsp;</td><td>6</td></tr></table></span>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-label">DIFFICULTY</div>
+            <div id="lvl-list">
+                <div class="lvl-row" data-v="1"><b>1</b><span class="nm">Easy</span><span class="er">~40 clues</span></div>
+                <div class="lvl-row" data-v="2"><b>2</b><span class="nm">Medium</span><span class="er">~32 clues</span></div>
+                <div class="lvl-row" data-v="3"><b>3</b><span class="nm">Hard</span><span class="er">~28 clues &middot; 1 hint</span></div>
+                <div class="lvl-row" data-v="4"><b>4</b><span class="nm">Expert</span><span class="er">~25 clues &middot; no hints</span></div>
+            </div>
+
+            <button class="btn go" id="btn-start">NEW GAME</button>
+            <button class="btn alt" id="btn-resume" style="display:none;">CONTINUE SAVED GAME</button>
+            <div class="stat-line" id="start-stats">&nbsp;</div>
+        </div>
+
+        <div class="start-foot">every puzzle new &middot; never repeats &middot; saves on device</div>
+        <div class="made">MADE BY <a href="https://8ugust.dev" rel="noopener">8UGUST.DEV</a></div>
+    </div>
+
+    <!-- ============ PLAY SCREEN ============ -->
+    <div id="screen-play" class="screen hidden">
+        <div class="play-top">
+            <span class="brand2">PAPER<em>SUDOKU</em></span>
+            <span class="lvl-name" id="lvl-label">EASY</span>
+            <span class="clock" id="clock">0:00</span>
+        </div>
+
+        <div id="board-wrap">
+            <table id="board" cellpadding="0" cellspacing="0" border="0"></table>
+            <div class="board-pop" id="win-pop">
+                <div class="pop-title">SOLVED</div>
+                <div class="pop-body" id="win-body">&nbsp;</div>
+                <div class="pop-btns">
+                    <button class="mbtn" id="btn-again">NEW GAME</button>
+                    <button class="mbtn" id="btn-close-win">CLOSE</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-row">
+            <button class="btn" id="btn-erase">ERASE</button>
+            <button class="btn" id="btn-undo">UNDO</button>
+            <button class="btn" id="btn-hint">HINT</button>
+            <button class="btn" id="btn-menu">MENU</button>
+        </div>
+
+        <div id="pad">
+            <button class="pad-btn" data-v="1">1</button>
+            <button class="pad-btn" data-v="2">2</button>
+            <button class="pad-btn" data-v="3">3</button>
+            <button class="pad-btn" data-v="4">4</button>
+            <button class="pad-btn" data-v="5">5</button>
+            <button class="pad-btn" data-v="6">6</button>
+            <button class="pad-btn" data-v="7">7</button>
+            <button class="pad-btn" data-v="8">8</button>
+            <button class="pad-btn" data-v="9">9</button>
+        </div>
+    </div>
+
+    <!-- ============ MENU ============ -->
+    <div class="overlay hidden" id="menu-modal">
+        <div class="box">
+            <div class="box-title">MENU</div>
+            <button class="btn" id="btn-check">CHECK ENTRIES</button>
+            <button class="btn" id="btn-new">NEW GAME</button>
+            <button class="btn" id="btn-exit">CHANGE DIFFICULTY</button>
+            <button class="btn alt" id="btn-close-menu">BACK TO GAME</button>
+        </div>
+    </div>
+
+    <script src="js/solver.js?v=1"></script>
+    <script src="js/generator.js?v=1"></script>
+    <script src="js/app.js?v=14"></script>
+</body>
+</html>
