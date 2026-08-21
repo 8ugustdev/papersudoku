@@ -70,13 +70,14 @@
     function generate(level, rand) {
         var cfg = LEVELS[level] || LEVELS[1];
         var stopAt = level === 4 ? 0 : cfg.givens;   // expert digs to floor
-        var best = null, attempt, sol, dug, out;
+        var best = null, bestSol = null, attempt, sol, dug, out;
 
         for (attempt = 0; attempt <= MAX_REROLLS; attempt++) {
             sol = S.fillRandom(rand);
             dug = dig(parse(sol), stopAt, rand);
             if (!best || Math.abs(dug.givens - cfg.givens) < Math.abs(best.givens - cfg.givens)) {
                 best = dug;
+                bestSol = sol;   // keep solution paired with the winning grid
             }
             if (Math.abs(dug.givens - cfg.givens) <= BAND) break;
         }
@@ -84,7 +85,7 @@
         out = best.cells.join('');
         return {
             givens: out,
-            solution: sol,
+            solution: bestSol,
             hash: hashOf(out),
             level: level,
             givensCount: best.givens
